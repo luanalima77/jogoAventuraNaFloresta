@@ -12,6 +12,7 @@ class InitialScene extends Phaser.Scene {
         this.load.image('gameName', 'assets/gameName.png');
     }
 
+    
     create() {
         //Altura e largura do jogo.
         var gameWidth = 1200;
