@@ -11,7 +11,7 @@ class GameScene extends Phaser.Scene{
         this.load.image('backgroundGameScene', 'assets/background.jpg');
         this.load.image('platform', 'assets/plataform.png');
         this.load.image('platform2', 'assets/platform2.png');
-        this.load.spritesheet('coins', 'assets/Coin.png', {frameWidth: 10, frameHeight: 10});
+        this.load.spritesheet('coins', 'assets/coin.png', {frameWidth: 10, frameHeight: 10});
         let poppins = new FontFace('Poppins', 'url(assets/Poppins-Bold.ttf)');
             poppins.load().then((loadedFont) => {
                 document.fonts.add(loadedFont);
