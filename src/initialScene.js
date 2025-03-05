@@ -6,13 +6,13 @@ class InitialScene extends Phaser.Scene {
 
     preload() {
         //Carregando as imagens que serão usadas na tela de início do jogo.
-        this.load.image('backgroundInitialScene', 'assets/background.jpg');
+        this.load.image('backgroundInitialScene', 'assets/background.jpg'); 
         this.load.image('startButton', 'assets/newStartButton.png');
         this.load.image('howToPlayButton', 'assets/howToPlayButton.png');
         this.load.image('gameName', 'assets/gameName.png');
     }
 
-    
+
     create() {
         //Altura e largura do jogo.
         var gameWidth = 1200;

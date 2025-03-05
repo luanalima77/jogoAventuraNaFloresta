@@ -29,8 +29,8 @@ class GameOverScene extends Phaser.Scene{
         //Mensagem de derrota.
         this.defeatMessage = this.add.image(gameWidth/2, gameHeight/2.5, 'defeatMessage');
 
-        //Mostrando quantas moedas o jogador coletou.
-        this.add.text(gameWidth / 2, gameHeight /1.5, `Moedas coletadas: ${data.points}`, {fontSize: "25px",fontFamily: "Poppins", color: "#ffffff"}).setOrigin(0.5);
+        //Mostrando quantas pedras preciosas o jogador coletou.
+        this.add.text(gameWidth / 2, gameHeight /1.5, `Pedras preciosas coletadas: ${data.points}`, {fontSize: "25px",fontFamily: "Poppins", color: "#ffffff"}).setOrigin(0.5);
         
         //Botão de reiniciar da tela de derrota
         var restartButton = this.add.image(gameWidth / 2, gameHeight/1.3, 'playAgainButton').setScale(0.7).setInteractive();

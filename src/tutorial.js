@@ -6,7 +6,7 @@ class Tutorial extends Phaser.Scene{
 
     //Carregando as imagens a serem usadas na tela de tutorial.
     preload(){
-        this.load.image('tutorialBackground', 'assets/howToPlayBackground.png');
+        this.load.image('tutorialBackground', 'assets/howToPlayBackground.png'); //REQUISITO DA ATIVIDADE: MOSTRAR OS CONTROLES DO JOGO.
         this.load.image('comeBackButton', 'assets/comeBackButton.png')
     }
 

@@ -6,12 +6,12 @@ class GameScene extends Phaser.Scene{
 
     //Carregando os elementos visuais do jogo (imagens, spritesheet e fonte).
     preload(){
-        this.load.spritesheet('player', 'assets/completePlayerSpritesheet.png', {frameWidth: 152, frameHeight: 129});
-        this.load.spritesheet('birdEnemy', 'assets/completeBirdSpritesheet.png', {frameWidth: 179,  frameHeight: 181});
-        this.load.image('backgroundGameScene', 'assets/background.jpg');
-        this.load.image('platform', 'assets/plataform.png');
-        this.load.image('platform2', 'assets/platform2.png');
-        this.load.spritesheet('coins', 'assets/coin.png', {frameWidth: 10, frameHeight: 10});
+        this.load.spritesheet('player', 'assets/completePlayerSpritesheet.png', {frameWidth: 152, frameHeight: 129}); //***REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PERSONAGEM).
+        this.load.spritesheet('birdEnemy', 'assets/completeBirdSpritesheet.png', {frameWidth: 179,  frameHeight: 181}); //***REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PÁSSARO INIMIGO).
+        this.load.image('backgroundGameScene', 'assets/background.jpg'); //***REQUISITO DA ATIVIDADE: CENÁRIO.
+        this.load.image('platform', 'assets/plataform.png'); //***REQUISITO DA ATIVIDADE: PLATAFORMA.
+        this.load.image('platform2', 'assets/platform2.png'); //***REQUISITO DA ATIVIDADE: PLATAFORMA.
+        this.load.image('gems', 'assets/gem.png');
         let poppins = new FontFace('Poppins', 'url(assets/Poppins-Bold.ttf)');
             poppins.load().then((loadedFont) => {
                 document.fonts.add(loadedFont);
@@ -26,21 +26,21 @@ class GameScene extends Phaser.Scene{
         this.physics.world.setBounds(0, 0, gameWidth * 2, gameHeight);
 
 
-        //Adicionando o background.
+        //Adicionando o background -> REQUISITO DA ATIVIDADE: CENÁRIO.
         this.background = this.add.tileSprite(0, 0, gameWidth, gameHeight, 'backgroundGameScene');
         this.background.setOrigin(0, 0);
         this.background.setScrollFactor(0); //Mantém o background fixo na tela durante o efeito parallax.
         this.background.setDisplaySize(gameWidth, gameHeight); //Tamanho do fundo
 
 
-        //Criando o jogador.
+        //Criando o jogador -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PERSONAGEM).
         this.player = this.physics.add.sprite(100, 200, 'player').setScale(0.5);
         this.player.setCollideWorldBounds(true);
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setBounds(0, 0, gameWidth * 2, gameHeight);
 
 
-        //***ANIMAÇÕES DO JOGADOR***/
+        //***ANIMAÇÕES DO JOGADOR -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PERSONAGEM).***/
         //Animação: jogador parado.
         this.anims.create({
             key: 'stopped',
@@ -68,52 +68,56 @@ class GameScene extends Phaser.Scene{
         this.player.anims.play('stopped', true); //O jogador inicia o jogo com a animação de parado.
 
 
-         //Criando as plataformas.
+         //Criando as plataformas -> REQUISITOS DA ATIVIDADE: PLATAFORMA E LISTA.
          this.platforms = this.physics.add.staticGroup();
          var platformsList = ['platform', 'platform2', 'platform', 'platform2','platform', 'platform2','platform', 'platform2', 'platform', 'platform2'];
          var horizontalSpaceBetweenPlatforms = gameWidth * 4.5/platformsList.length;
 
 
-        //Texto dos pontos.
-        this.pointsText = this.add.text(100, 200, 'Moedas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
+        //Texto dos pontos -> REQUISITO DA ATIVIDADE: PLACAR.
+        this.pointsText = this.add.text(100, 200, 'Pedras preciosas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
 
 
-        //Grupos das moedinhas da recompensa.
-        this.coins = this.physics.add.group();
+        //Grupos das pedras preciosas da recompensa.
+        this.gems = this.physics.add.group();
 
 
-        // Laço de repetição para criar as plataformas e as moedinhas em cima delas.
+        // Laço de repetição para criar as plataformas e as pedras preciosas em cima delas -> REQUISITO DA ATIVIDADE: ESTRUTURA DE REPETIÇÃO.
         for (let i = 0; i < platformsList.length; i++) {
             let platformPositionX = horizontalSpaceBetweenPlatforms * i + Phaser.Math.Between(50, 75);
             var platformPositionY = Phaser.Math.Between(gameHeight / 2, gameHeight - 105);
             this.platforms.create(platformPositionX, platformPositionY, platformsList[i]).setScale(0.7).refreshBody();
             
-            // Na primeira plataforma (posição 0), não aparece moeda.
+
+            // Na primeira plataforma (posição 0), não aparece pedra preciosa -> REQUISITO DA ATIVIDADE: ESTRUTURA DE DECISÃO.
             if (i === 0) {
                 continue; // Usando o continue (lembrando dos autoestudos de computação da semana 2).
             }
 
-            //Posição das moedinhas alinhada com a da plataforma.
-            let coinPositionX = platformPositionX;
-            let coinPositionY = platformPositionY - 200;
+            //Posição das pedras preciosas alinhada com a da plataforma.
+            let gemPositionX = platformPositionX;
+            let gemPositionY = platformPositionY - 200;
 
-            // Posicionando as moedas nas plataformas (menos na primeira).
-            this.coins.create(coinPositionX, coinPositionY, 'coins').setScale(2.5);
+            // Posicionando as pedras preciosas nas plataformas (menos na primeira).
+            this.gems.create(gemPositionX, gemPositionY, 'gems').setScale(0.07);
         }
 
 
-         //Quando o jogador coleta as moedinhas, ele ganha pontos.
+         //Quando o jogador coleta as pedras preciosas, ele ganha pontos -> REQUISITO DA ATIVIDADE: PLACAR (PONTUAÇÃO).
          this.points = 0;
-         this.physics.add.overlap(this.player, this.coins, function(player, coin){
-            if(coin.active){
-                coin.setVisible(false);
-                coin.destroy();
+
+
+         //REQUISITO DA ATIVIDADE: RECURSOS DE OVERLAP OU COLISÃO (jogador e pedra preciosa).
+         this.physics.add.overlap(this.player, this.gems, function(player, gem){
+            if(gem.active){
+                gem.setVisible(false);
+                gem.destroy();
                 this.points = this.points + 1;
-                this.pointsText.setText('Moedas: ' + this.points);
+                this.pointsText.setText('Pedras preciosas: ' + this.points);
             }
 
 
-            //Se o jogador coletar todas as moedas, ele é direcionado à cena de vitória.
+            //Se o jogador coletar todas as pedras preciosas, ele é direcionado à cena de vitória -> REQUISITO DA ATIVIDADE: ESTRUTURA DE DECISÃO.
             if(this.points === 4){
                 this.scene.start("WinScene");
             }
@@ -121,7 +125,7 @@ class GameScene extends Phaser.Scene{
 
 
 
-        //*** PÁSSAROS: INIMIGOS -> O JOGADOR NÃO PODE ENCOSTAR NELES***/
+        //*** PÁSSAROS: INIMIGOS -> O JOGADOR NÃO PODE ENCOSTAR NELES -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PÁSSARO INIMIGO)***/
         //Pássaros.
         this.birds = this.physics.add.group({key: 'birdEnemy'});
 
@@ -142,12 +146,12 @@ class GameScene extends Phaser.Scene{
         });
 
 
-        //***COLISÕES***
+        //***COLISÕES -> REQUISITO DA ATIVIDADE: RECURSOS DE OVERLAP OU COLISÃO***
         //Adicionando a colisão entre jogador e plataformas.
         this.physics.add.collider(this.player, this.platforms);
 
-        //Adicionando a colisão entre moedinhas e plataformas.
-        this.physics.add.collider(this.coins, this.platforms);
+        //Adicionando a colisão entre as pedras preciosas e plataformas.
+        this.physics.add.collider(this.gems, this.platforms);
 
         //Adicionando a colisão entre o jogador e o pássaro, chamando a função hitPlayer.
         this.physics.add.overlap(this.player, this.birds, this.hitPlayer, null, this);
@@ -192,7 +196,7 @@ class GameScene extends Phaser.Scene{
         
     }
 
-    //Função para fazer os pássaros aparecem na tela de forma animada, vindo da direita para a esquerda.
+    //Função para fazer os pássaros aparecem na tela de forma animada, vindo da direita para a esquerda -> REQUISITO DA ATIVIDADE: USO DE FUNÇÃO.
     spawnBird() {
         var birdPositionX = Phaser.Math.Between(this.scale.width, this.scale.width * 2); //Posição horizontal do pássaro.
 
@@ -204,7 +208,8 @@ class GameScene extends Phaser.Scene{
         //Escolhendo uma plataforma qualquer para associar ao pássaro.
         platformY = this.platforms.getChildren()[randomPlatform].y;
 
-        //Com este laço de repetição, o pássaro não passa tão perto da plataforma, mas nem tão longe também.
+
+        //Com este laço de repetição, o pássaro não passa tão perto da plataforma, mas nem tão longe também -> REQUISITO DA ATIVIDADE: ESTRUTURA DE REPETIÇÃO.
         do {
             birdPositionY = Phaser.Math.Between(200, this.scale.height / 3);
         } while (Math.abs(birdPositionY - platformY) < 100); 
@@ -229,15 +234,15 @@ class GameScene extends Phaser.Scene{
     }
     
     
-    //Quando o jogador encosta no pássaro, ele morre.
+    //Quando o jogador encosta no pássaro, ele morre -> REQUISITO DA ATIVIDADE: USO DE FUNÇÃO.
     hitPlayer(player, bird){
         this.killPlayer();
     }
 
-    //Função para matar o jogador se ele pisar no "chão" do fundo.
+    //Função para matar o jogador se ele pisar no "chão" do fundo -> REQUISITO DA ATIVIDADE: USO DE FUNÇÃO.
     killPlayer(){
         this.scene.start('GameOverScene', { points: this.points });
-        console.log("Morreu");
+        console.log("Player is dead!");
     }
 }
 
