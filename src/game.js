@@ -34,7 +34,7 @@ class GameScene extends Phaser.Scene{
 
 
         //Criando o jogador.
-        this.player = this.physics.add.sprite(100, 200, 'player').setScale(0.7);
+        this.player = this.physics.add.sprite(100, 200, 'player').setScale(0.5);
         this.player.setCollideWorldBounds(true);
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setBounds(0, 0, gameWidth * 2, gameHeight);
