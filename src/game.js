@@ -1,16 +1,21 @@
+//Classe GameScene.
 class GameScene extends Phaser.Scene{
     constructor(){
         super({key: 'GameScene'}); //Chave da cena de jogo (id).
     }
 
-    //Carregando os elementos visuais do jogo.
+    //Carregando os elementos visuais do jogo (imagens, spritesheet e fonte).
     preload(){
         this.load.spritesheet('player', 'assets/playerSpritesheet.png', {frameWidth: 91.26, frameHeight: 91});
         this.load.spritesheet('birdEnemy', 'assets/birdSpritesheet.png', {frameWidth: 179,  frameHeight: 181, endFrame: 7, margin: 10, spacing: 0});
-        this.load.image('backgroundGameScene', 'assets/background.png');
+        this.load.image('backgroundGameScene', 'assets/background.jpg');
         this.load.image('platform', 'assets/plataform.png');
         this.load.image('platform2', 'assets/platform2.png');
         this.load.spritesheet('coins', 'assets/Coin.png', {frameWidth: 10, frameHeight: 10});
+        let poppins = new FontFace('Poppins', 'url(assets/Poppins-Bold.ttf)');
+            poppins.load().then((loadedFont) => {
+                document.fonts.add(loadedFont);
+        });
     }
 
 
@@ -25,7 +30,7 @@ class GameScene extends Phaser.Scene{
         this.background = this.add.tileSprite(0, 0, gameWidth, gameHeight, 'backgroundGameScene');
         this.background.setOrigin(0, 0);
         this.background.setScrollFactor(0); //Mantém o background fixo na tela durante o efeito parallax.
-        this.background.setDisplaySize(gameWidth * 2.5, gameHeight * 2.5); //Aumentando o tamanho do fundo.
+        this.background.setDisplaySize(gameWidth, gameHeight); //Tamanho do fundo
 
 
         //Criando o jogador.
@@ -70,7 +75,7 @@ class GameScene extends Phaser.Scene{
 
 
         //Texto dos pontos.
-        this.pointsText = this.add.text(50, 100, 'Moedas: 0').setScrollFactor(0).setStyle({fontSize: '50px'});
+        this.pointsText = this.add.text(50, 100, 'Moedas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
 
 
         //Grupos das moedinhas da recompensa.
@@ -93,7 +98,7 @@ class GameScene extends Phaser.Scene{
             let coinPositionY = platformPositionY - 200;
 
             // Posicionando as moedas nas plataformas (menos na primeira).
-            this.coins.create(coinPositionX, coinPositionY, 'coins').setScale(3);
+            this.coins.create(coinPositionX, coinPositionY, 'coins').setScale(2.5);
         }
 
 
@@ -201,13 +206,13 @@ class GameScene extends Phaser.Scene{
 
         //Com este laço de repetição, o pássaro não passa tão perto da plataforma, mas nem tão longe também.
         do {
-            birdPositionY = Phaser.Math.Between(100, this.scale.height / 2);
+            birdPositionY = Phaser.Math.Between(100, this.scale.height / 3);
         } while (Math.abs(birdPositionY - platformY) < 100); 
         
 
         //Criando o pássaro no grupo de pássaros: tamanho, velocidade, área delimitada, gravidade e animação (respectivamente).
         var bird = this.birds.create(birdPositionX, birdPositionY, 'birdEnemy');
-        bird.setScale(0.7);
+        bird.setScale(0.5);
         bird.setVelocityX(Phaser.Math.Between(50, 100) * -1); 
         bird.setCollideWorldBounds(true);
         bird.body.allowGravity = false;

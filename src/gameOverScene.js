@@ -1,11 +1,19 @@
+//Classe GameOverScene.
 class GameOverScene extends Phaser.Scene{
     constructor(){
         super({key: 'GameOverScene'}); //Chave da cena de vitória (id).
     }
 
-    //Carregando a imagem do fundo.
+    //Carregando as imagens da tela de derrota, além da fonte Poppins.
     preload(){
-        this.load.image('background', 'assets/background.png');
+        this.load.image('background', 'assets/background.jpg');
+        this.load.image('defeatMessage', 'assets/defeatMessage.png');
+        let poppins = new FontFace('Poppins', 'url(assets/Poppins-Bold.ttf)');
+            poppins.load().then((loadedFont) => {
+                document.fonts.add(loadedFont);
+        });
+
+        this.load.image('playAgainButton', 'assets/playAgainButton.png');
     }
 
     //Parâmetro data: está servindo para passar os pontos da tela de game para a de gameover.
@@ -18,14 +26,14 @@ class GameOverScene extends Phaser.Scene{
         this.background = this.add.image(gameWidth/2, gameHeight/2, 'background');
         this.background.setDisplaySize(gameWidth, gameHeight);
 
-        //Textos da tela de derrota.
-        this.add.text(gameWidth / 2, gameHeight / 2 - 10, "QUE PENA!", {fontSize: "80px", color: "#ffffff"}).setOrigin(0.5);
-        this.add.text(gameWidth / 2, gameHeight / 2 + 50, "Tome mais cuidado com os pássaros", {fontSize: "30px", color: "#ffffff"}).setOrigin(0.5);
-        this.add.text(gameWidth / 2, gameHeight / 2 + 100, "e com o chão da floresta", {fontSize: "30px",color: "#ffffff"}).setOrigin(0.5);
-        this.add.text(gameWidth / 2, gameHeight / 2 + 150, `Moedas coletadas: ${data.points}`, {fontSize: "30px", color: "#ffffff"}).setOrigin(0.5);
+        //Mensagem de derrota.
+        this.defeatMessage = this.add.image(gameWidth/2, gameHeight/2, 'defeatMessage');
 
+        //Mostrando quantas moedas o jogador coletou.
+        this.add.text(gameWidth / 2, gameHeight / 1.35, `Moedas coletadas: ${data.points}`, {fontSize: "25px",fontFamily: "Poppins", color: "#ffffff"}).setOrigin(0.5);
+        
         //Botão de reiniciar da tela de derrota
-        var restartButton = this.add.text(gameWidth / 2, gameHeight / 2 + 200, "Jogue novamente!", {fontSize: "30px", backgroundColor: "#2A5A39", padding: { left: 10, right: 10, top: 5, bottom: 5}}).setOrigin(0.5).setInteractive();
+        var restartButton = this.add.image(gameWidth / 2, gameHeight/1.2, 'playAgainButton').setScale(0.7).setInteractive();
 
         //Quando o botão de reiniciar é clicado, o jogador pode voltar ao jogo.
         restartButton.on("pointerdown", () => {
