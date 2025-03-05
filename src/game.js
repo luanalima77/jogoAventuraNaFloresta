@@ -75,7 +75,7 @@ class GameScene extends Phaser.Scene{
 
 
         //Texto dos pontos.
-        this.pointsText = this.add.text(50, 100, 'Moedas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
+        this.pointsText = this.add.text(100, 200, 'Moedas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
 
 
         //Grupos das moedinhas da recompensa.
@@ -206,7 +206,7 @@ class GameScene extends Phaser.Scene{
 
         //Com este laço de repetição, o pássaro não passa tão perto da plataforma, mas nem tão longe também.
         do {
-            birdPositionY = Phaser.Math.Between(100, this.scale.height / 3);
+            birdPositionY = Phaser.Math.Between(200, this.scale.height / 3);
         } while (Math.abs(birdPositionY - platformY) < 100); 
         
 

@@ -20,7 +20,7 @@ class Tutorial extends Phaser.Scene{
         this.background.setDisplaySize(gameWidth, gameHeight);
 
         //Botão de voltar (para a tela inicial).
-        this.comeBackButton = this.add.image(100, 100,'comeBackButton').setScale(0.4).setInteractive();
+        this.comeBackButton = this.add.image(100, 200,'comeBackButton').setScale(0.4).setInteractive();
         this.comeBackButton.on('pointerdown', () =>{
             this.scene.start('InitialScene');
         })
