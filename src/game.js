@@ -6,8 +6,8 @@ class GameScene extends Phaser.Scene{
 
     //Carregando os elementos visuais do jogo (imagens, spritesheet e fonte).
     preload(){
-        this.load.spritesheet('player', 'assets/playerSpritesheet.png', {frameWidth: 91.26, frameHeight: 91});
-        this.load.spritesheet('birdEnemy', 'assets/birdSpritesheet.png', {frameWidth: 179,  frameHeight: 181, endFrame: 7, margin: 10, spacing: 0});
+        this.load.spritesheet('player', 'assets/completePlayerSpritesheet.png', {frameWidth: 152, frameHeight: 129});
+        this.load.spritesheet('birdEnemy', 'assets/completeBirdSpritesheet.png', {frameWidth: 179,  frameHeight: 181});
         this.load.image('backgroundGameScene', 'assets/background.jpg');
         this.load.image('platform', 'assets/plataform.png');
         this.load.image('platform2', 'assets/platform2.png');
@@ -34,7 +34,7 @@ class GameScene extends Phaser.Scene{
 
 
         //Criando o jogador.
-        this.player = this.physics.add.sprite(100, 200, 'player').setScale(1);
+        this.player = this.physics.add.sprite(100, 200, 'player').setScale(0.7);
         this.player.setCollideWorldBounds(true);
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setBounds(0, 0, gameWidth * 2, gameHeight);
@@ -45,7 +45,7 @@ class GameScene extends Phaser.Scene{
         this.anims.create({
             key: 'stopped',
             frames: this.anims.generateFrameNumbers('player', {start: 0, end: 9}),
-            frameRate: 2,
+            frameRate: 30,
             repeat: -1,
         })
 
@@ -53,15 +53,15 @@ class GameScene extends Phaser.Scene{
         this.anims.create({
             key: 'running',
             frames: this.anims.generateFrameNumbers('player', {start: 10, end: 19}),
-            frameRate: 15,
+            frameRate: 30,
             repeat: -1,
         })
 
         //Animação: jogador pulando.
         this.anims.create({
             key: 'jumping',
-            frames: this.anims.generateFrameNumbers('player', {start: 20, end: 29}),
-            frameRate: 15,
+            frames: this.anims.generateFrameNumbers('player', {start: 20, end: 27}),
+            frameRate: 30,
             repeat: -1,
         })
 
@@ -128,7 +128,7 @@ class GameScene extends Phaser.Scene{
         //Animação do pássaro.
         this.anims.create({
             key: 'flyBird',
-            frames: this.anims.generateFrameNumbers('birdEnemy', {start: 0, end: 5}),  // Ajuste para usar 10 frames
+            frames: this.anims.generateFrameNumbers('birdEnemy', {start: 0, end: 7}),
             frameRate: 12,
             repeat: -1
         })
