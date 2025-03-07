@@ -17,7 +17,7 @@
                 margin: 0;
                 padding: 0;
                 height: 100vh;
-              
+                display: flex;
                 justify-content: center;
                 align-items: center;
                 box-sizing: border-box;
@@ -38,7 +38,7 @@
             const config = {
                 type: Phaser.AUTO,
                 width: 1200,
-                height: 600,
+                height: 700,
                 scene: [InitialScene, Tutorial, GameScene, WinScene, GameOverScene], //REQUISITO DA ATIVIDADE: ESTRUTURANDO O JOGO EM DUAS OU MAIS CENAS.
                 parent: "gameSpace",
                 physics: {
@@ -48,10 +48,6 @@
                         debug: false 
                     }
                 },
-                scale: {
-                    mode: Phaser.Scale.NONE, 
-                    autoCenter: Phaser.Scale.CENTER_BOTH,
-                }
             }
 
             const game = new Phaser.Game(config);

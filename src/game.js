@@ -75,7 +75,7 @@ class GameScene extends Phaser.Scene{
 
 
         //Texto dos pontos -> REQUISITO DA ATIVIDADE: PLACAR.
-        this.pointsText = this.add.text(100, 200, 'Pedras preciosas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
+        this.pointsText = this.add.text(100, 100, 'Pedras preciosas: 0').setScrollFactor(0).setStyle({fontSize: '40px', fontFamily: "Poppins"});
 
 
         //Grupos das pedras preciosas da recompensa.

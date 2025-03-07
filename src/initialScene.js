@@ -22,13 +22,13 @@ class InitialScene extends Phaser.Scene {
         var initialSceneBackground = this.add.image(gameWidth/2, gameHeight/2, 'backgroundInitialScene');
         initialSceneBackground.setScale(gameWidth/initialSceneBackground.width, gameHeight/initialSceneBackground.height);
 
-        this.add.image(gameWidth / 2, gameHeight / 2.5, 'gameName');
+        this.add.image(gameWidth / 2, gameHeight / 2.8, 'gameName');
 
         //Criando o botão de start (início do jogo).
-        var startButton = this.add.image(gameWidth/2, gameHeight/1.5, 'startButton').setScale(0.7).setInteractive();
+        var startButton = this.add.image(gameWidth/2, gameHeight/1.65, 'startButton').setScale(0.7).setInteractive();
 
         //Criando o botão para o tutorial ("como jogar").
-        var howToPlayButton = this.add.image(gameWidth/2, gameHeight/1.3, 'howToPlayButton').setScale(0.7).setInteractive();
+        var howToPlayButton = this.add.image(gameWidth/2, gameHeight/1.4, 'howToPlayButton').setScale(0.7).setInteractive();
 
         //Iniciando a cena de jogo quando o botão de início é clicado.
         startButton.on('pointerdown', () =>{
