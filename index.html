@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Aventura na floresta</title>
         <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
         <script src = "src/initialScene.js"></script>
@@ -17,7 +17,7 @@
                 margin: 0;
                 padding: 0;
                 height: 100vh;
-                
+              
                 justify-content: center;
                 align-items: center;
                 box-sizing: border-box;
@@ -29,7 +29,7 @@
         <!--Container para as cenas do jogo-->
         <div class = "gameSpace"></div>
 
-        <!--Configurações gerais das cenas-->
+        <!--Configurações gerais do jogo: tipo de renderização, largura, altura, cenas, elemento pai, física e escala-->
         <script>
             const config = {
                 type: Phaser.AUTO,
@@ -45,7 +45,7 @@
                     }
                 },
                 scale: {
-                    mode: Phaser.Scale.FIT, 
+                    mode: Phaser.Scale.NONE, 
                     autoCenter: Phaser.Scale.CENTER_BOTH,
                 }
             }
