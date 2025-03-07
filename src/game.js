@@ -24,14 +24,14 @@ class GameScene extends Phaser.Scene{
         //Largura e altura do jogo.
         var gameWidth = this.scale.width;
         var gameHeight = this.scale.height; 
-        this.physics.world.setBounds(0, 0, gameWidth * 2, gameHeight);
+        this.physics.world.setBounds(0, 0, gameWidth * 2, gameHeight); //Definindo os limites físicos do mundo do jogo.
 
 
         //Adicionando o background -> REQUISITO DA ATIVIDADE: CENÁRIO.
         this.background = this.add.tileSprite(0, 0, gameWidth, gameHeight, 'backgroundGameScene');
         this.background.setOrigin(0, 0);
         this.background.setScrollFactor(0); //Mantém o background fixo na tela durante o efeito parallax.
-        this.background.setDisplaySize(gameWidth, gameHeight); //Tamanho do fundo
+        this.background.setDisplaySize(gameWidth, gameHeight); //Tamanho do fundo.
 
 
         //Criando o jogador -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (JOGADOR).
@@ -165,7 +165,7 @@ class GameScene extends Phaser.Scene{
     update(){
         this.background.tilePositionX = this.cameras.main.scrollX; //O background acompanha o andar do jogador.
 
-        //Movimento horizontal do jogador (direita e esquerda, respectivamente).
+        //Movimento horizontal do jogador (direita e esquerda, respectivamente) -> REQUISITO DA ATIVIDADE: ESTRUTURA DE DECISÃO.
         if(this.cursors.right.isDown){
             this.player.setVelocityX(200);
             this.player.anims.play('running', true).setFlip(false, false); //Animação de correr é ativada.
@@ -177,7 +177,7 @@ class GameScene extends Phaser.Scene{
             this.player.anims.play('stopped', true); //Animação de parado é ativada.
         }
 
-        //Movimento vertical do jogador (subindo).
+        //Movimento vertical do jogador (subindo) -> seta para cima.
         if(this.cursors.up.isDown){
             this.player.setVelocityY(-150);
             this.player.anims.play('jumping', true);
