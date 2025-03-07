@@ -8,9 +8,9 @@
 <p>Uma exploradora (jogador(a)) deseja coletar pedras preciosas em uma floresta. No entanto, os pássaros do ambiente não toleram esse tipo de atividade, vigiando a floresta o tempo todo. Portanto, cabe à exploradora (jogador(a)) coletar as pedras sem colidir com os pássaros, caso contrário ela não poderá coletar todas as pedras e sairá a força da floresta, tendo que reiniciar sua empreitada. Além disso, ela só pode pisar nas plataformas, nas quais as pedras preciosas estão, se não ela haverá de voltar ao início da jornada.</p>
 
 <h1>Controles</h1>
-<p>Seta direita: a exploradora corre para a direita.</p>
-<p>Seta esquerda: a exploradora corre para a esquerda.</p>
-<p>Seta para cima: a exploradora pula.</p>
+<p>Use a seta direita do teclado para fazer a exploradora correr para a direita.</p>
+<p>Use a seta esquerda do teclado para fazer a exploradora correr para a esquerda.</p>
+<p>Use a seta para cima para fazer a exploradora pular.</p>
 <p>É importante ressaltar que é possível usar dois controles ao mesmo tempo, especialmente seta direita e seta para cima (para a exploradora correr para a direita enquanto salta) e seta esquerda junto com seta para cima (para a exploradora correr para a esquerda enquanto salta).</p>
 
 <h1>Link do código (GitHub Individual)</h1>
