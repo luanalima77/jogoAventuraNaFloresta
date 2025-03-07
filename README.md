@@ -1,4 +1,5 @@
 <h1>Título do Jogo: Aventura na floresta</h1>
+<img width="899" alt="image" src="https://github.com/user-attachments/assets/c9818103-592e-4d01-ae2b-86c0306f634e" />
 
 <h1>Contexto</h1>
 <p>Uma exploradora (jogador(a)) deseja coletar pedras preciosas em uma floresta. No entanto, os pássaros não toleram esse tipo de atividade, vigiando a floresta o tempo todo. Portanto, cabe à exploradora (jogador) coletar as pedras sem enconstar nos pássaros e sem sair das plataformas, se não ela haverá de voltar ao início da jornada, pois ela só pode pisar onde há pedras preciosas.</p>
