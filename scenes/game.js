@@ -24,8 +24,9 @@ class GameScene extends Phaser.Scene{
         //Largura e altura do jogo.
         var gameWidth = this.scale.width;
         var gameHeight = this.scale.height; 
-        this.physics.world.setBounds(0, 0, gameWidth * 2, gameHeight); //Definindo os limites físicos do mundo do jogo.
 
+        //Definindo os limites físicos do mundo do jogo.
+        this.physics.world.setBounds(0, 0, gameWidth * 2, gameHeight); 
 
         //Adicionando o background -> REQUISITO DA ATIVIDADE: CENÁRIO.
         this.background = this.add.tileSprite(0, 0, gameWidth, gameHeight, 'backgroundGameScene');
@@ -64,10 +65,11 @@ class GameScene extends Phaser.Scene{
             frames: this.anims.generateFrameNumbers('player', {start: 20, end: 27}),
             frameRate: 30,
             repeat: -1,
-        })
+        });
 
-        this.player.anims.play('stopped', true); //O jogador inicia o jogo com a animação de parado.
 
+        //O jogador inicia o jogo com a animação de parado.
+        this.player.anims.play('stopped', true); 
 
          //Criando as plataformas -> REQUISITOS DA ATIVIDADE: PLATAFORMA E LISTA.
          this.platforms = this.physics.add.staticGroup();
@@ -114,7 +116,7 @@ class GameScene extends Phaser.Scene{
                 gem.setVisible(false);
                 gem.destroy();
                 this.points = this.points + 1;
-                this.pointsText.setText('Pedras preciosas: ' + this.points);
+                this.pointsText.setText('Pedras preciosas: ' + this.points); //Aqui, há a atualização do placar quando o jogador pega uma pedra preciosa.
             }
 
 
@@ -199,7 +201,8 @@ class GameScene extends Phaser.Scene{
 
     //Função para fazer os pássaros aparecem na tela de forma animada, vindo da direita para a esquerda -> REQUISITO DA ATIVIDADE: USO DE FUNÇÃO.
     spawnBird() {
-        var birdPositionX = Phaser.Math.Between(this.scale.width, this.scale.width * 2); //Posição horizontal do pássaro.
+        //Posição horizontal do pássaro inimigo (eixo x).
+        var birdPositionX = Phaser.Math.Between(this.scale.width, this.scale.width * 2); 
 
         //Delimitando a posição vertical do pássaro, com base na plataforma.
         var birdPositionY;

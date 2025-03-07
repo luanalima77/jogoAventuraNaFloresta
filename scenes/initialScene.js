@@ -16,8 +16,8 @@ class InitialScene extends Phaser.Scene {
 
     create() {
         //Altura e largura do jogo.
-        var gameWidth = 1200;
-        var gameHeight = 800;    
+        var gameWidth = this.scale.width;
+        var gameHeight = this.scale.height;    
 
         //Criando o background (fundo) do jogo: ajustando largura e altura.
         var initialSceneBackground = this.add.image(gameWidth/2, gameHeight/2, 'backgroundInitialScene');
@@ -27,10 +27,10 @@ class InitialScene extends Phaser.Scene {
         this.add.image(gameWidth / 2, gameHeight / 2.8, 'gameName');
 
         //Criando o botão de start (início do jogo).
-        var startButton = this.add.image(gameWidth/2, gameHeight/1.65, 'startButton').setScale(0.7).setInteractive();
+        var startButton = this.add.image(gameWidth/2, gameHeight/1.6, 'startButton').setScale(0.7).setInteractive();
 
         //Criando o botão para o tutorial ("como jogar").
-        var howToPlayButton = this.add.image(gameWidth/2, gameHeight/1.4, 'howToPlayButton').setScale(0.7).setInteractive();
+        var howToPlayButton = this.add.image(gameWidth/2, gameHeight/1.3, 'howToPlayButton').setScale(0.7).setInteractive();
 
         //Iniciando a cena de jogo quando o botão de início é clicado.
         startButton.on('pointerdown', () =>{
@@ -41,7 +41,7 @@ class InitialScene extends Phaser.Scene {
         //Iniciando o tutorial quando o botão de "como jogar" é clicado.
         howToPlayButton.on('pointerdown', () =>{
             this.scene.start('Tutorial');
-            console.log("How to play button was clicked!") //Depurando se o botão de como jogar foi realmente clicado.
+            console.log("How to play button was clicked!"); //Depurando se o botão de como jogar foi realmente clicado.
         })
     }
 }
