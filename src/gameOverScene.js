@@ -42,7 +42,7 @@ class GameOverScene extends Phaser.Scene{
         });
 
         //Botão para voltar à tela inicial.
-        this.initialScreenButton = this.add.image(gameWidth / 2, gameHeight/1.1, 'initialScreenButton').setScale(0.6).setInteractive();
+        this.initialScreenButton = this.add.image(gameWidth / 2, gameHeight/1.25, 'initialScreenButton').setScale(0.6).setInteractive();
 
         //Quando o botão "ir à tela inicial", o jogador volta à tela inicial.
         this.initialScreenButton.on("pointerdown", () => {
