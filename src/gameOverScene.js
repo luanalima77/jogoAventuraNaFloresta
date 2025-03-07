@@ -1,7 +1,7 @@
-//Classe GameOverScene.
+//Classe GameOverScene (referente à cena de derrota).
 class GameOverScene extends Phaser.Scene{
     constructor(){
-        super({key: 'GameOverScene'}); //Chave da cena de vitória (id).
+        super({key: 'GameOverScene'}); //Chave da cena de derrota (id).
     }
 
     //Carregando as imagens da tela de derrota, além da fonte Poppins.
@@ -17,7 +17,7 @@ class GameOverScene extends Phaser.Scene{
         this.load.image('initialScreenButton', 'assets/initialScreenButton.png');
     }
 
-    //Parâmetro data: está servindo para passar os pontos da tela de game para a de gameover.
+    //Parâmetro data: está servindo para passar os pontos da cena GameScene para a cena GameOverScene.
     create(data){
         //Altura e largura do jogo.
         var gameWidth = this.scale.width;
@@ -33,7 +33,7 @@ class GameOverScene extends Phaser.Scene{
         //Mostrando quantas pedras preciosas o jogador coletou.
         this.add.text(gameWidth / 2, gameHeight /1.65, `Pedras preciosas coletadas: ${data.points}`, {fontSize: "25px",fontFamily: "Poppins", color: "#ffffff"}).setOrigin(0.5);
         
-        //Botão de reiniciar da tela de derrota
+        //Botão "jogar novamente" na tela de derrota.
         var restartButton = this.add.image(gameWidth / 2, gameHeight/1.45, 'playAgainButton').setScale(0.6).setInteractive();
 
         //Quando o botão de reiniciar é clicado, o jogador pode voltar ao jogo.
@@ -44,7 +44,7 @@ class GameOverScene extends Phaser.Scene{
         //Botão para voltar à tela inicial.
         this.initialScreenButton = this.add.image(gameWidth / 2, gameHeight/1.25, 'initialScreenButton').setScale(0.6).setInteractive();
 
-        //Quando o botão "ir à tela inicial", o jogador volta à tela inicial.
+        //Quando o botão "ir à tela inicial" é clicado, o jogador volta à tela inicial.
         this.initialScreenButton.on("pointerdown", () => {
             this.scene.start("InitialScene"); 
         });

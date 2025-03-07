@@ -1,5 +1,6 @@
-//Classe WinScene.
+//Classe WinScene (referente à cena de vitória).
 class WinScene extends Phaser.Scene{
+    //Método construtor.
     constructor(){
         super({key: 'WinScene'}); //Chave da cena de vitória (id).
     }
@@ -24,7 +25,7 @@ class WinScene extends Phaser.Scene{
         //Mensagem de vitória.
         this.congratulationsMessage = this.add.image(gameWidth/2, gameHeight/2.5, 'congratulationsMessage');
 
-        //Botão de reiniciar.
+        //Botão "jogar novamente" na tela de vitória.
         var restartButton = this.add.image(gameWidth / 2, gameHeight/1.45, 'playAgainButton').setScale(0.6).setInteractive();
 
         //Quando o botão de reiniciar é clicado, o jogador pode voltar ao jogo.
@@ -35,7 +36,7 @@ class WinScene extends Phaser.Scene{
         //Botão para voltar à tela inicial.
         this.initialScreenButton = this.add.image(gameWidth / 2, gameHeight/1.25, 'initialScreenButton').setScale(0.6).setInteractive();
 
-        //Quando o botão "ir à tela inicial", o jogador volta à tela inicial.
+        //Quando o botão "ir à tela inicial" é clicado, o jogador volta à tela inicial.
         this.initialScreenButton.on("pointerdown", () => {
             this.scene.start("InitialScene"); 
         });

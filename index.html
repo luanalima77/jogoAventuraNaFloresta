@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
+        <!--Padrão de caracteres, padrão de dimensão da página e título do jogo-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Aventura na floresta</title>
+
+        <!--Importação do Phaser-->
         <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+
+        <!--Importação das cenas-->
         <script src = "src/initialScene.js"></script>
         <script src = "src/tutorial.js"></script>
         <script src = "src/game.js"></script>
@@ -26,11 +31,12 @@
         </style>
     </head>
 
+
     <body>
-        <!--Container para as cenas do jogo-->
+        <!--Container para mostrar as cenas do jogo-->
         <div class = "gameSpace"></div>
 
-        <!--Configurações gerais do jogo: tipo de renderização, largura, altura, cenas, elemento pai e física do jogo-->
+        <!--Configurações gerais do jogo: renderização, largura, altura, cenas, elemento pai e física do jogo-->
         <script>
             const config = {
                 type: Phaser.AUTO,
@@ -47,6 +53,7 @@
                 },
             }
 
+            //Criando o jogo passando as configurações como parâmetro.
             const game = new Phaser.Game(config);
         </script>
     </body>

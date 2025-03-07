@@ -1,12 +1,13 @@
-//Classe GameScene.
+//Classe GameScene (referente à cena de jogar).
 class GameScene extends Phaser.Scene{
+    //Método construtor.
     constructor(){
         super({key: 'GameScene'}); //Chave da cena de jogo (id).
     }
 
-    //Carregando os elementos visuais do jogo (imagens, spritesheet e fonte).
+    //Carregando os elementos visuais do jogo (imagens, spritesheets e fonte).
     preload(){
-        this.load.spritesheet('player', 'assets/completePlayerSpritesheet.png', {frameWidth: 152, frameHeight: 129}); //***REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PERSONAGEM).
+        this.load.spritesheet('player', 'assets/completePlayerSpritesheet.png', {frameWidth: 152, frameHeight: 129}); //***REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (JOGADOR).
         this.load.spritesheet('birdEnemy', 'assets/completeBirdSpritesheet.png', {frameWidth: 179,  frameHeight: 181}); //***REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PÁSSARO INIMIGO).
         this.load.image('backgroundGameScene', 'assets/background.jpg'); //***REQUISITO DA ATIVIDADE: CENÁRIO.
         this.load.image('platform', 'assets/plataform.png'); //***REQUISITO DA ATIVIDADE: PLATAFORMA.
@@ -33,14 +34,14 @@ class GameScene extends Phaser.Scene{
         this.background.setDisplaySize(gameWidth, gameHeight); //Tamanho do fundo
 
 
-        //Criando o jogador -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PERSONAGEM).
+        //Criando o jogador -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (JOGADOR).
         this.player = this.physics.add.sprite(100, 200, 'player').setScale(0.5);
         this.player.setCollideWorldBounds(true);
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setBounds(0, 0, gameWidth * 2, gameHeight);
 
 
-        //***ANIMAÇÕES DO JOGADOR -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (PERSONAGEM).***/
+        //***ANIMAÇÕES DO JOGADOR -> REQUISITO DA ATIVIDADE: USO DE SPRITESHEET (JOGADOR).***/
         //Animação: jogador parado.
         this.anims.create({
             key: 'stopped',
@@ -107,7 +108,7 @@ class GameScene extends Phaser.Scene{
          this.points = 0;
 
 
-         //REQUISITO DA ATIVIDADE: RECURSOS DE OVERLAP OU COLISÃO (jogador e pedra preciosa).
+         //REQUISITO DA ATIVIDADE: RECURSOS DE OVERLAP OU COLISÃO -> OVERLAP 1: jogador e pedra preciosa.
          this.physics.add.overlap(this.player, this.gems, function(player, gem){
             if(gem.active){
                 gem.setVisible(false);
@@ -153,7 +154,7 @@ class GameScene extends Phaser.Scene{
         //Adicionando a colisão entre as pedras preciosas e plataformas.
         this.physics.add.collider(this.gems, this.platforms);
 
-        //Adicionando a colisão entre o jogador e o pássaro, chamando a função hitPlayer.
+        //Adicionando o overlap entre o jogador e o pássaro, chamando a função hitPlayer -> OVERLAP 2: jogador e pássaro inimigo.
         this.physics.add.overlap(this.player, this.birds, this.hitPlayer, null, this);
 
         //Habilitando a chamada dos inputs do teclado.
@@ -176,13 +177,13 @@ class GameScene extends Phaser.Scene{
             this.player.anims.play('stopped', true); //Animação de parado é ativada.
         }
 
-        //Movimento vertical do jogador (subindo)
+        //Movimento vertical do jogador (subindo).
         if(this.cursors.up.isDown){
             this.player.setVelocityY(-150);
             this.player.anims.play('jumping', true);
         }
 
-        //O jogador morre se ele encostar no "chão" do fundo e a cena de derrota é aberta por meio da função killPlayer.
+        //O jogador perde se ele encostar no "chão" do fundo e a cena de derrota é aberta por meio da função killPlayer.
         if(this.player.y + this.player.height >= this.scale.height ){
             this.killPlayer();
         }
@@ -205,6 +206,7 @@ class GameScene extends Phaser.Scene{
         var platformY; 
         var randomPlatform = Phaser.Math.Between(0, this.platforms.getChildren().length - 1);
 
+
         //Escolhendo uma plataforma qualquer para associar ao pássaro.
         platformY = this.platforms.getChildren()[randomPlatform].y;
 
@@ -215,7 +217,7 @@ class GameScene extends Phaser.Scene{
         } while (Math.abs(birdPositionY - platformY) < 100); 
         
 
-        //Criando o pássaro no grupo de pássaros: tamanho, velocidade, área delimitada, gravidade e animação (respectivamente).
+        //Criando o pássaro no grupo de pássaros: posição, tamanho (escala), velocidade horizontal, área delimitada, gravidade e animação (respectivamente).
         var bird = this.birds.create(birdPositionX, birdPositionY, 'birdEnemy');
         bird.setScale(0.5);
         bird.setVelocityX(Phaser.Math.Between(50, 100) * -1); 

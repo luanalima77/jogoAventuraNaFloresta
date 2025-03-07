@@ -1,7 +1,7 @@
-//Classe Tutorial.
+//Classe Tutorial (referente à cena de tutorial).
 class Tutorial extends Phaser.Scene{
     constructor(){
-        super({key: 'Tutorial'}); //Chave da cena de tutorial.
+        super({key: 'Tutorial'}); //Chave da cena de tutorial (id).
     }
 
     //Carregando as imagens a serem usadas na tela de tutorial.

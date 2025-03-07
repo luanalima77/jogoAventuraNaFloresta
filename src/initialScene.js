@@ -1,5 +1,6 @@
-//Classe InitialScene.
+//Classe InitialScene (referente à tela inicial).
 class InitialScene extends Phaser.Scene {
+    //Método construtor.
     constructor() {
         super({ key: 'InitialScene' }); //Chave da cena inicial (a título de comparação, é como se fosse um id da cena).
     }
@@ -22,6 +23,7 @@ class InitialScene extends Phaser.Scene {
         var initialSceneBackground = this.add.image(gameWidth/2, gameHeight/2, 'backgroundInitialScene');
         initialSceneBackground.setScale(gameWidth/initialSceneBackground.width, gameHeight/initialSceneBackground.height);
 
+        //Criando a imagem que conté o nome do jogo.
         this.add.image(gameWidth / 2, gameHeight / 2.8, 'gameName');
 
         //Criando o botão de start (início do jogo).
