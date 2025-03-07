@@ -10,7 +10,7 @@
 <h1>Controles</h1>
 <p>Use a seta direita do teclado para fazer a exploradora correr para a direita.</p>
 <p>Use a seta esquerda do teclado para fazer a exploradora correr para a esquerda.</p>
-<p>Use a seta para cima para fazer a exploradora pular.</p>
+<p>Use a seta para cima do teclado para fazer a exploradora pular.</p>
 <p>É importante ressaltar que é possível usar dois controles ao mesmo tempo, especialmente seta direita e seta para cima (para a exploradora correr para a direita enquanto salta) e seta esquerda junto com seta para cima (para a exploradora correr para a esquerda enquanto salta).</p>
 
 <h1>Link do código (GitHub Individual)</h1>
